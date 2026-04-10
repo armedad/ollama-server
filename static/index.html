@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ollama Server</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Ollama Server</h1>
+            <div id="status" class="status disconnected">
+                <span class="status-dot"></span>
+                <span id="status-text">Checking...</span>
+            </div>
+        </header>
+
+        <main>
+            <!-- Status Panel -->
+            <section class="panel">
+                <h2>Status</h2>
+                <div class="status-details">
+                    <div class="stat">
+                        <label>Ollama URL</label>
+                        <span id="ollama-url">-</span>
+                    </div>
+                    <div class="stat">
+                        <label>Models Available</label>
+                        <span id="model-count">-</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Models Panel -->
+            <section class="panel">
+                <h2>Models</h2>
+                <div class="models-actions">
+                    <input type="text" id="pull-model-input" placeholder="Model name (e.g., llama3:8b)">
+                    <button id="pull-model-btn" class="btn primary">Pull Model</button>
+                    <button id="refresh-models-btn" class="btn">Refresh</button>
+                </div>
+                <div id="pull-progress" class="progress-container hidden">
+                    <div class="progress-text"></div>
+                    <div class="progress-bar"><div class="progress-fill"></div></div>
+                </div>
+                <div id="models-list" class="models-list">
+                    <p class="loading">Loading models...</p>
+                </div>
+            </section>
+
+            <!-- Settings Panel -->
+            <section class="panel">
+                <h2>Settings</h2>
+                <form id="settings-form">
+                    <div class="form-group">
+                        <label for="settings-ollama-url">Ollama URL</label>
+                        <input type="text" id="settings-ollama-url" placeholder="http://localhost:11434">
+                    </div>
+                    <div class="form-group">
+                        <label for="settings-server-port">Server Port</label>
+                        <input type="number" id="settings-server-port" placeholder="11435">
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn primary">Save Settings</button>
+                        <span id="settings-status" class="settings-status"></span>
+                    </div>
+                </form>
+            </section>
+        </main>
+
+        <footer>
+            <p>Ollama Server v0.1.0</p>
+        </footer>
+    </div>
+
+    <div id="confirm-modal" class="modal hidden">
+        <div class="modal-content">
+            <h3>Confirm Delete</h3>
+            <p>Are you sure you want to delete <strong id="delete-model-name"></strong>?</p>
+            <div class="modal-actions">
+                <button id="confirm-delete-btn" class="btn danger">Delete</button>
+                <button id="cancel-delete-btn" class="btn">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>
