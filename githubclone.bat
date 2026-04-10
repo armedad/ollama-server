@@ -56,7 +56,7 @@ echo.
 
 REM Clone the repository
 REM Replace this URL with your actual GitHub repository URL
-git clone https://github.com/YOUR_USERNAME/ollama-server.git "%INSTALL_DIR%"
+git clone https://github.com/armedad/ollama-server.git "%INSTALL_DIR%"
 if %ERRORLEVEL% neq 0 (
     echo.
     echo Error: Failed to clone repository.
